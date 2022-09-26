@@ -1,4 +1,5 @@
 ﻿using Infrastructure.Identity;
+using JWTAuthenticationAspNetCore.API.Extensions;
 using JWTAuthenticationAspNetCore.Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,8 @@ namespace JWTAuthenticationAspNetCore
                 x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<AppIdentityDbContext>(x => 
                 x.UseSqlite(Configuration.GetConnectionString("IdentityConnection")));
+
+            services.AddIdentityServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
