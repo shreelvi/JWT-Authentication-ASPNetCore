@@ -29,7 +29,7 @@ namespace JWTAuthenticationAspNetCore
             services.AddDbContext<AppIdentityDbContext>(x => 
                 x.UseSqlite(Configuration.GetConnectionString("IdentityConnection")));
 
-            services.AddIdentityServices();
+            services.AddIdentityServices(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +43,8 @@ namespace JWTAuthenticationAspNetCore
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
